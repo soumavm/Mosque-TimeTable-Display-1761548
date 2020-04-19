@@ -35,6 +35,11 @@
     body {
         background-color: #009000;
     }
+
+    .highlight {
+        background-color: #39C939;
+        font-weight: bold;
+    }
 </style>
 
 <body>
@@ -42,29 +47,29 @@
     <center>
         <h1 id="date">Today's date is:</h1>
         <h1 id="time">The time is:</h1>
-        <p>There are x more prayers remaining today</p>
-        <p>The next prayer is in x hours and y minutes</p>
+        <p id="remaining">There are x more prayers remaining today</p>
+        <p id="next">The next prayer is in x hours and y minutes</p>
     </center>
     <br />
     <h1>Today's prayer times are:</h1>
     <table>
-        <tr>
+        <tr id="col1">
             <td>Salat al-fajr (Fajr)</td>
             <td id="1">Time1</td>
         </tr>
-        <tr class="highlight">
+        <tr id="col2">
             <td>Salat al-zuhr (Zuhr)</td>
             <td id="2">Time2</td>
         </tr>
-        <tr>
+        <tr id="col3">
             <td>Salat al-'asr (Asr)</td>
             <td id="3">Time3</td>
         </tr>
-        <tr>
+        <tr id="col4">
             <td>Salat al-maghrib (Maghrib)</td>
             <td id="4">Time4</td>
         </tr>
-        <tr>
+        <tr id="col5">
             <td>Salat al-'isha (Isha'a)</td>
             <td id="5">Time5</td>
         </tr>

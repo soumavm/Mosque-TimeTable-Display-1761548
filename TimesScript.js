@@ -3,11 +3,48 @@ var day = today.getDate();
 var lastday = day;
 
 var indexToday;
+var timesToday;
 var csvResult;
+
+function csvDone() {
+    setInterval(checkTime, 1000);
+}
 
 function daily() {
     indexToday = csvResult[0].indexOf(date);
+    timesToday = [ toMinutes(csvResult[1][indexToday]), toMinutes(csvResult[2][indexToday]), toMinutes(csvResult[3][indexToday]), toMinutes(csvResult[4][indexToday]), toMinutes(csvResult[5][indexToday]) ];
     updateTable();
+}
+
+function minutesNow() {
+    return today.getHours() * 60 + today.getMinutes();
+}
+
+function toMinutes(Time) {
+    return parseInt(Time.split(':')[0]) * 60 + parseInt(Time.split(':')[1]);
+}
+
+function setColour() {
+    if(minutesNow() < timesToday[0]) {
+        $('#col1').addClass("highlight");
+        $('#col5').removeClass("highlight");
+    }
+    else if(minutesNow() < timesToday[1]) {
+        $('#col2').addClass("highlight");
+        $('#col1').removeClass("highlight");
+    }
+    else if(minutesNow() < timesToday[2]) {
+        $('#col3').addClass("highlight");
+        $('#col2').removeClass("highlight");
+    }
+    else if(minutesNow() < timesToday[3]) {
+        $('#col4').addClass("highlight");
+        $('#col3').removeClass("highlight");
+    }
+    else if(minutesNow() < timesToday[4]) {
+        $('#col5').addClass("highlight");
+        $('#col4').removeClass("highlight");
+    }
 }
 
 function csvTimeParser(Time) {
@@ -55,8 +92,6 @@ function updateTime() {
 var date = updateDate();
 var time = updateTime();
 
-setInterval(checkTime, 1000);
-
 function printDate() {
     $('#date').text("Today's date is: " + date);
     $('#time').text(time);
@@ -68,8 +103,9 @@ function checkTime() {
     date = updateDate();
     printDate();
 
-    day = today.getDate();
+    setColour();
 
+    day = today.getDate();
     if(day != lastday) {
         lastday = day;
         console.log("changing date");
@@ -87,6 +123,7 @@ $(document).ready(function() {
         var reader = new FileReader();
         reader.onload = function () {
             csvResult = $.csv.toArrays(reader.result);
+            csvDone();
             daily();
         };
         // start reading the file. When it is done, calls the onload event defined above.
