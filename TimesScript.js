@@ -2,7 +2,19 @@ var today = new Date();
 var day = today.getDate();
 var lastday = day;
 
+var indexToday;
 var csvResult;
+
+function csvTimeParser(Time) {
+    var hours = parseInt(Time.split(':')[0]);
+    var minutes = Time.split(':')[1];
+    var ampm = hours >= 12? 'pm' : 'am';
+
+    if(hours == 0) hours = 12;
+    else if(hours > 12) hours -= 12;
+
+    return hours + ':' + minutes + ' ' + ampm;
+}
 
 function updateDate() {
     var displayMonth = '' + (today.getMonth() + 1);
@@ -17,9 +29,13 @@ function updateDate() {
 }
 
 function updateTime() {
-    var hours = today.getHours() > 1 ? today.getHours() - 12 : today.getHours();
+    var hours = today.getHours() > 12 ? today.getHours() - 12 : today.getHours();
+    if (hours == 0) hours = 12;
+    else if (hours > 12) hours -= 12;
+
     var minutes = today.getMinutes().toString().length == 1 ? '0'+ today.getMinutes() : today.getMinutes();
     var ampm = today.getHours() >= 12 ? 'pm' : 'am';
+
     return hours + ':' + minutes + ' ' + ampm;
 }
 
@@ -60,7 +76,7 @@ $(document).ready(function() {
         $('#csv').prop('hidden',true);
         var reader = new FileReader();
         reader.onload = function () {
-            csvResult = $.csv.toObjects(reader.result);
+            csvResult = $.csv.toArrays(reader.result);
         };
         // start reading the file. When it is done, calls the onload event defined above.
         reader.readAsBinaryString(fileInput.files[0]);
