@@ -15,7 +15,10 @@ function updateDate() {
 }
 
 function updateTime() {
-    return today.getHours() + ':' + today.getMinutes();
+    var hours = today.getHours() > 1 ? today.getHours() - 12 : today.getHours();
+    var minutes = today.getMinutes().toString().length == 1 ? '0'+ today.getMinutes() : today.getMinutes();
+    var ampm = today.getHours() >= 12 ? 'pm' : 'am';
+    return hours + ':' + minutes + ' ' + ampm;
 }
 
 var date = updateDate();
