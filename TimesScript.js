@@ -5,6 +5,11 @@ var lastday = day;
 var indexToday;
 var csvResult;
 
+function daily() {
+    indexToday = csvResult[0].indexOf(date);
+    updateTable();
+}
+
 function csvTimeParser(Time) {
     var hours = parseInt(Time.split(':')[0]);
     var minutes = Time.split(':')[1];
@@ -14,6 +19,14 @@ function csvTimeParser(Time) {
     else if(hours > 12) hours -= 12;
 
     return hours + ':' + minutes + ' ' + ampm;
+}
+
+function updateTable() {
+    $('#1').text(csvTimeParser(csvResult[1][indexToday]));
+    $('#2').text(csvTimeParser(csvResult[2][indexToday]));
+    $('#3').text(csvTimeParser(csvResult[3][indexToday]));
+    $('#4').text(csvTimeParser(csvResult[4][indexToday]));
+    $('#5').text(csvTimeParser(csvResult[5][indexToday]));
 }
 
 function updateDate() {
@@ -49,10 +62,6 @@ function printDate() {
     $('#time').text(time);
 }
 
-function checkDate() {
-    today = new Date();
-}
-
 function checkTime() {
     today = new Date();
     time = updateTime();
@@ -64,6 +73,7 @@ function checkTime() {
     if(day != lastday) {
         lastday = day;
         console.log("changing date");
+        daily();
     }
 }
 
@@ -77,6 +87,7 @@ $(document).ready(function() {
         var reader = new FileReader();
         reader.onload = function () {
             csvResult = $.csv.toArrays(reader.result);
+            daily();
         };
         // start reading the file. When it is done, calls the onload event defined above.
         reader.readAsBinaryString(fileInput.files[0]);
