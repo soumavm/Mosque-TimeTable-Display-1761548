@@ -31,10 +31,6 @@ function printDate() {
     $('#time').text(time);
 }
 
-$(document).ready(function() {
-    printDate();
-});
-
 function checkDate() {
     today = new Date();
 }
@@ -46,11 +42,28 @@ function checkTime() {
     printDate();
 
     day = today.getDate();
-    console.log("checking date: " + today);
 
     if(day != lastday) {
         lastday = day;
         console.log("changing date");
     }
 }
+
+$(document).ready(function() {
+    printDate();
+
+    var fileInput = document.getElementById("csv");
+
+    readFile = function () {
+        $('#csv').prop('hidden',true);
+        var reader = new FileReader();
+        reader.onload = function () {
+            document.getElementById('1').innerHTML = reader.result;
+        };
+        // start reading the file. When it is done, calls the onload event defined above.
+        reader.readAsBinaryString(fileInput.files[0]);
+    };
+
+    fileInput.addEventListener('change', readFile);
+});
 
