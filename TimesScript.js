@@ -4,8 +4,12 @@ var lastday = day;
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+day;
 setInterval(checkDate, 60000);
 
-$(document).ready(function() {
+function printDate() {
     $('#date').text("Today's date is: " + date);
+}
+
+$(document).ready(function() {
+    printDate();
 });
 
 function checkDate() {
@@ -16,7 +20,7 @@ function checkDate() {
     if(day != lastday) {
         date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+day;
         lastday = day;
-        $('#date').text("Today's date is: " + date);
+        printDate();
         console.log("changing date");
     }
 }
