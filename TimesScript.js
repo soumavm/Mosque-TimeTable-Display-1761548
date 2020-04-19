@@ -2,6 +2,8 @@ var today = new Date();
 var day = today.getDate();
 var lastday = day;
 
+var csvResult;
+
 function updateDate() {
     var displayMonth = '' + (today.getMonth() + 1);
     if (displayMonth.length < 2)
@@ -58,7 +60,7 @@ $(document).ready(function() {
         $('#csv').prop('hidden',true);
         var reader = new FileReader();
         reader.onload = function () {
-            document.getElementById('1').innerHTML = reader.result;
+            csvResult = $.csv.toObjects(reader.result);
         };
         // start reading the file. When it is done, calls the onload event defined above.
         reader.readAsBinaryString(fileInput.files[0]);
