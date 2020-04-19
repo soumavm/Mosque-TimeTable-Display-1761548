@@ -5,7 +5,6 @@
     <script src="jquery.csv.min.js"></script>
     <script src="TimesScript.js"></script>
     <title>Prayer Clock</title>
-
 </head>
 <style>
     table {
@@ -17,9 +16,10 @@
 
     }
 
-    td, th {
+    td {
         border: 2px solid white;
-        text-align: left;
+        width: 50%;
+        text-align: center;
         padding: 2%;
     }
 
@@ -35,38 +35,43 @@
     body {
         background-color: #009000;
     }
+
+    .highlight {
+        background-color: #39C939;
+        font-weight: bold;
+    }
 </style>
 
 <body>
- <!--enter date function thing-->
+    <input id="csv" type="file"/>
     <center>
         <h1 id="date">Today's date is:</h1>
         <h1 id="time">The time is:</h1>
-        <p>You have x more prayers remaining today</p> <!--x-->
-        <p>Your next prayer is in x hours and y minutes</p>
+        <p id="remaining">There are x more prayers remaining today.</p>
+        <p id="next">The next prayer is in x hour(s) and y minute(s).</p>
     </center>
     <br />
     <h1>Today's prayer times are:</h1>
     <table>
-        <tr id="1">
+        <tr id="col1">
             <td>Salat al-fajr (Fajr)</td>
-            <td>Time1</td>
+            <td id="1">Time1</td>
         </tr>
-        <tr id="2" class="highlight">
+        <tr id="col2">
             <td>Salat al-zuhr (Zuhr)</td>
-            <td>Time2</td>
+            <td id="2">Time2</td>
         </tr>
-        <tr id="3" >
+        <tr id="col3">
             <td>Salat al-'asr (Asr)</td>
-            <td>Time3</td>
+            <td id="3">Time3</td>
         </tr>
-        <tr id="4">
+        <tr id="col4">
             <td>Salat al-maghrib (Maghrib)</td>
-            <td>Time4</td>
+            <td id="4">Time4</td>
         </tr>
-        <tr id="5">
+        <tr id="col5">
             <td>Salat al-'isha (Isha'a)</td>
-            <td>Time5</td>
+            <td id="5">Time5</td>
         </tr>
     </table>
 </body>
