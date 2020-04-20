@@ -32,14 +32,12 @@ function timeToNext(index) {
 
 function setColour() {
     if(minutesNow() < timesToday[0]) {
-        $('#col1').addClass("highlight");
         $('#col5').removeClass("highlight");
         $('#remaining').text("There are 5 more prayers remaining today.");
         $('#next').text("The next prayer is in " + timeToNext(4));
     }
     else if(minutesNow() < timesToday[1]) {
         $('#col1').addClass("highlight");
-        $('#col5').removeClass("highlight");
         $('#remaining').text("There are 4 more prayers remaining today.");
         $('#next').text("The next prayer is in " + timeToNext(1));
     }
