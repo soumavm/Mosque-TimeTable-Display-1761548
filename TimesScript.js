@@ -31,35 +31,41 @@ function timeToNext(index) {
 }
 
 function setColour() {
-    if(minutesNow() < timesToday[1]) {
+    if(minutesNow() < timesToday[0]) {
         $('#col1').addClass("highlight");
         $('#col5').removeClass("highlight");
         $('#remaining').text("There are 5 more prayers remaining today.");
+        $('#next').text("The next prayer is in " + timeToNext(4));
+    }
+    else if(minutesNow() < timesToday[1]) {
+        $('#col1').addClass("highlight");
+        $('#col5').removeClass("highlight");
+        $('#remaining').text("There are 4 more prayers remaining today.");
         $('#next').text("The next prayer is in " + timeToNext(1));
     }
     else if(minutesNow() < timesToday[2]) {
         $('#col2').addClass("highlight");
         $('#col1').removeClass("highlight");
-        $('#remaining').text("There are 4 more prayers remaining today.");
+        $('#remaining').text("There are 3 more prayers remaining today.");
         $('#next').text("The next prayer is in " + timeToNext(2));
     }
     else if(minutesNow() < timesToday[3]) {
         $('#col3').addClass("highlight");
         $('#col2').removeClass("highlight");
-        $('#remaining').text("There are 3 more prayers remaining today.");
+        $('#remaining').text("There are 2 more prayers remaining today.");
         $('#next').text("The next prayer is in " + timeToNext(3));
     }
     else if(minutesNow() < timesToday[4]) {
         $('#col4').addClass("highlight");
         $('#col3').removeClass("highlight");
-        $('#remaining').text("There are 2 more prayers remaining today.");
+        $('#remaining').text("There is 1 more prayer remaining today.");
         $('#next').text("The next prayer is in " + timeToNext(4));
     }
     else {
         $('#col5').addClass("highlight");
         $('#col4').removeClass("highlight");
-        $('#remaining').text("There are 1 more prayers remaining today.");
-        $('#next').text("The next prayer is in " + timeToNext(5));
+        $('#remaining').text("There are no more prayers remaining today.");
+        $('#next').text("The next prayer is tomorrow.");
     }
 }
 
