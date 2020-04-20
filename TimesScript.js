@@ -34,7 +34,7 @@ function setColour() {
     if(minutesNow() < timesToday[0]) {
         $('#col5').removeClass("highlight");
         $('#remaining').text("There are 5 more prayers remaining today.");
-        $('#next').text("The next prayer is in " + timeToNext(4));
+        $('#next').text("The next prayer is in " + timeToNext(0));
     }
     else if(minutesNow() < timesToday[1]) {
         $('#col1').addClass("highlight");
