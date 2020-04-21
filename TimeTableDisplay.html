@@ -7,13 +7,35 @@
     <title>Prayer Clock</title>
 </head>
 <style>
+    p {
+        font-size: 1.5vw;
+        color:white;
+        
+    }
+
+    h1 {
+        font-size: 2.2vw;
+        color: white;
+    }
+
+    body {
+        background-color: #10A010;
+    }
+
+    .highlight {
+        background-color: #36C636;
+        font-weight: bold;
+    }
+
     table {
+        margin: auto;
         font-family: arial;
         font-size:1.5vw;
         border-collapse: collapse;
-        width: 100%;
+        width: 90%;
         color: white;
-
+        box-shadow: 5px 5px 5px #002000;
+        background-color: #00A000;
     }
 
     td {
@@ -23,36 +45,35 @@
         padding: 2%;
     }
 
-    p {
-        font-size: 1.5vw;
-        color:white;
-        
-    }
-    h1 {
-        font-size: 2vw;
-        color: white;
-    }
-    body {
-        background-color: #009000;
-    }
-
-    .highlight {
-        background-color: #39C939;
-        font-weight: bold;
+    .text {
+        text-shadow: 1px 1px 1px #002000, 3px 3px 3px #004000;
+        font-family: arial;
     }
 </style>
 
 <body>
     <input id="csv" type="file"/>
     <center>
-        <h1 id="date">Today's date is:</h1>
-        <h1 id="time">The time is:</h1>
-        <p id="remaining">There are x more prayers remaining today.</p>
-        <p id="next">The next prayer is in x hour(s) and y minute(s).</p>
+    <div style="width:100%;font-size:0;">
+        <div style="width:25%;display:inline-block;">
+            <img style="padding:1% 3%;" src="./islam.png"/>
+        </div>
+        <div style="width:50%;display:inline-block;">
+            <center class="text" style="display:inline-block;">
+                <h1 id="date">Today's date is:</h1>
+                <h1 id="time">The time is:</h1>
+                <p id="remaining">There are x more prayers remaining today.</p>
+                <p id="next">The next prayer is in x hour(s) and y minute(s).</p>
+            </center>
+        </div>
+        <div style="width:25%;display:inline-block;">
+            <img style="padding:1% 3%;" src="./islam.png"/>
+        </div>
+    </div>
     </center>
     <br />
-    <h1>Today's prayer times are:</h1>
-    <table>
+    <h1 class="text" style="padding:5px 4%;">Today's prayer times are:</h1>
+    <table class="text">
         <tr id="col1">
             <td>Salat al-fajr (Fajr)</td>
             <td id="1">Time1</td>
