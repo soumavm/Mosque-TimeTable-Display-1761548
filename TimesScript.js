@@ -12,7 +12,7 @@ function csvDone() {
 
 function daily() {
     indexToday = csvResult[0].indexOf(date);
-    timesToday = [ toMinutes(csvResult[1][indexToday]), toMinutes(csvResult[2][indexToday]), toMinutes(csvResult[3][indexToday]), toMinutes(csvResult[4][indexToday]), toMinutes(csvResult[5][indexToday]) ];
+    timesToday = [ toMinutes(csvResult[1][indexToday]), toMinutes(csvResult[2][indexToday]), toMinutes(csvResult[3][indexToday]), toMinutes(csvResult[4][indexToday]), toMinutes(csvResult[5][indexToday]), toMinutes(csvResult[6][indexToday]) ];
     updateTable();
 }
 
@@ -42,22 +42,28 @@ function setColour() {
         $('#next').text("The next prayer is in " + timeToNext(1));
     }
     else if(minutesNow() < timesToday[2]) {
-        $('#col2').addClass("highlight");
+        $('#sun').addClass("highlight");
         $('#col1').removeClass("highlight");
-        $('#remaining').text("There are 3 more prayers remaining today.");
+        $('#remaining').text("There are 4 more prayers remaining today.");
         $('#next').text("The next prayer is in " + timeToNext(2));
     }
     else if(minutesNow() < timesToday[3]) {
-        $('#col3').addClass("highlight");
-        $('#col2').removeClass("highlight");
-        $('#remaining').text("There are 2 more prayers remaining today.");
+        $('#col2').addClass("highlight");
+        $('#sun').removeClass("highlight");
+        $('#remaining').text("There are 3 more prayers remaining today.");
         $('#next').text("The next prayer is in " + timeToNext(3));
     }
     else if(minutesNow() < timesToday[4]) {
+        $('#col3').addClass("highlight");
+        $('#col2').removeClass("highlight");
+        $('#remaining').text("There are 2 more prayers remaining today.");
+        $('#next').text("The next prayer is in " + timeToNext(4));
+    }
+    else if(minutesNow() < timesToday[5]) {
         $('#col4').addClass("highlight");
         $('#col3').removeClass("highlight");
         $('#remaining').text("There is 1 more prayer remaining today.");
-        $('#next').text("The next prayer is in " + timeToNext(4));
+        $('#next').text("The next prayer is in " + timeToNext(5));
     }
     else {
         $('#col5').addClass("highlight");
@@ -80,10 +86,11 @@ function csvTimeParser(Time) {
 
 function updateTable() {
     $('#1').text(csvTimeParser(csvResult[1][indexToday]));
-    $('#2').text(csvTimeParser(csvResult[2][indexToday]));
-    $('#3').text(csvTimeParser(csvResult[3][indexToday]));
-    $('#4').text(csvTimeParser(csvResult[4][indexToday]));
-    $('#5').text(csvTimeParser(csvResult[5][indexToday]));
+    $('#suntime').text(csvTimeParser(csvResult[2][indexToday]));
+    $('#2').text(csvTimeParser(csvResult[3][indexToday]));
+    $('#3').text(csvTimeParser(csvResult[4][indexToday]));
+    $('#4').text(csvTimeParser(csvResult[5][indexToday]));
+    $('#5').text(csvTimeParser(csvResult[6][indexToday]));
 }
 
 function updateDate() {
