@@ -9,7 +9,8 @@
 <style>
     .text {
         font-family: arial;
-        color: #138BD3;
+        color: #777777;
+        font-weight: bold;
     }
 
     p {
@@ -22,17 +23,17 @@
 
     body {
         font-weight: bold;
+        margin: auto;
     }
 
     html {
-        background: url(background2.png) no-repeat center center fixed;
+        background: url(background4.png) no-repeat bottom center fixed;
         background-size: cover;
     }
 
     .highlight {
         font-weight: bold;
-        color: #345351;
-        background-color: rgba(255, 165, 0, 0.7) !important;
+        background-color: rgba(255, 255, 255, 0.7) !important;
     }
 
     table {
@@ -42,7 +43,7 @@
         border-collapse: collapse;
         width: 90%;
         box-shadow: 5px 5px 5px #002000;
-        background-color: rgba(255, 165, 0, 0.5) !important;
+        background-color: rgba(230, 230, 230, 0.6) !important;
         font-weight: normal;
     }
 
@@ -51,12 +52,15 @@
         width: 50%;
         text-align: center;
         padding: 1.5% 2%;
-        color: #00EAD9;
+        color: #222222;
+        text-shadow: 1px 1px 1px #BBBBBB;
     }
 </style>
 
 <body>
     <input id="csv" type="file"/>
+    <br />
+    <br />
     <center class="text">
         <h1 id="date">Today's date is:</h1>
         <h1 id="time">The time is:</h1>
@@ -66,7 +70,8 @@
     </div>
     </center>
     <br />
-    <h1 class="text" style="padding:0 4%;">Today's prayer times are:</h1>
+    <br />
+    <!--<h1 class="text" style="padding:0 4%;">Today's prayer times are:</h1>-->
     <table>
         <tr id="col1" class="text">
             <td>Fajr</td>
