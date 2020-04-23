@@ -12,6 +12,14 @@ function csvDone() {
 
 function daily() {
     indexToday = csvResult[0].indexOf(date);
+
+    if(today.getDay() == 5) {
+        $('#jummah').text("Jummah is at 1:00 pm.");
+    }
+    else {
+        $('#jummah').text();
+    }
+
     timesToday = [ toMinutes(csvResult[1][indexToday]), toMinutes(csvResult[2][indexToday]), toMinutes(csvResult[3][indexToday]), toMinutes(csvResult[4][indexToday]), toMinutes(csvResult[5][indexToday]), toMinutes(csvResult[6][indexToday]) ];
     updateTable();
 }
