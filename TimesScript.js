@@ -31,14 +31,9 @@ function timeToNext(index) {
     return hoursNext + " hour(s) and " + minutesNext + " minute(s).";
 }
 
-function setColour() {
-    if(minutesNow() < timesToday[0] - 10) {
-        $('#next').text("The next prayer is in " + timeToNext(0));
-    }
-    
+function setColour() {    
 	if(minutesNow() >= timesToday[0] - 10 && minutesNow() < timesToday[0] + 10) {
         $('#col1').addClass("highlight");
-        $('#next').text("The next prayer is in " + timeToNext(1));
     }
 	else {
         $('#col1').removeClass("highlight");
@@ -46,7 +41,6 @@ function setColour() {
 	
 	if(minutesNow() >= timesToday[1] - 10 && minutesNow() < timesToday[1] + 10) {
         $('#sun').addClass("highlight");
-        $('#next').text("The next prayer is in " + timeToNext(2));
     }
 	else {
         $('#sun').removeClass("highlight");
@@ -54,7 +48,6 @@ function setColour() {
 	
 	if(minutesNow() >= timesToday[2] - 10 && minutesNow() < timesToday[2] + 10) {
         $('#col2').addClass("highlight");
-        $('#next').text("The next prayer is in " + timeToNext(3));
     }
 	else {
         $('#col2').removeClass("highlight");
@@ -62,7 +55,6 @@ function setColour() {
 	
 	if(minutesNow() >= timesToday[3] - 10 && minutesNow() < timesToday[3] + 10) {
         $('#col3').addClass("highlight");
-        $('#next').text("The next prayer is in " + timeToNext(4));
     }
 	else {
         $('#col3').removeClass("highlight");
@@ -70,7 +62,6 @@ function setColour() {
 	
 	if(minutesNow() >= timesToday[4] - 10 && minutesNow() < timesToday[4] + 10) {
         $('#col4').addClass("highlight");
-        $('#next').text("There are no more prayers today");
     }
 	else {
         $('#col4').removeClass("highlight");
@@ -117,7 +108,7 @@ function updateDate() {
 }
 
 function updateTime() {
-    var hours = today.getHours() > 12 ? today.getHours() - 12 : today.getHours();
+    var hours = today.getHours();
 
     var minutes = today.getMinutes().toString().length == 1 ? '0'+ today.getMinutes() : today.getMinutes();
 
