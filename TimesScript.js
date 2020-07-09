@@ -11,16 +11,9 @@ function csvDone() {
 }
 
 function daily() {
-    indexToday = csvResult[0].indexOf(date);
+    indexToday = csvResult.findIndex(x => x.date == date);
 
-    if(today.getDay() == 5) {
-        $('#jummah').text("Jummah is at 1:00 pm.");
-    }
-    else {
-        $('#jummah').text();
-    }
-
-    timesToday = [ toMinutes(csvResult[1][indexToday]), toMinutes(csvResult[2][indexToday]), toMinutes(csvResult[3][indexToday]), toMinutes(csvResult[4][indexToday]), toMinutes(csvResult[5][indexToday]), toMinutes(csvResult[6][indexToday]) ];
+    timesToday = [ toMinutes(csvResult[indexToday].fajar), toMinutes(csvResult[indexToday].zohar), toMinutes(csvResult[indexToday].asr), toMinutes(csvResult[indexToday].maghrib), toMinutes(csvResult[indexToday].esha), toMinutes(csvResult[indexToday].jummah) ];
     updateTable();
 }
 
@@ -93,12 +86,12 @@ function csvTimeParser(Time) {
 }
 
 function updateTable() {
-    $('#1').text(csvTimeParser(csvResult[1][indexToday]));
-    $('#suntime').text(csvTimeParser(csvResult[2][indexToday]));
-    $('#2').text(csvTimeParser(csvResult[3][indexToday]));
-    $('#3').text(csvTimeParser(csvResult[4][indexToday]));
-    $('#4').text(csvTimeParser(csvResult[5][indexToday]));
-    $('#5').text(csvTimeParser(csvResult[6][indexToday]));
+    $('#1').text(csvResult[indexToday].fajar);
+    $('#suntime').text(csvResult[indexToday].zohar);
+    $('#2').text(csvResult[indexToday].asr);
+    $('#3').text(csvResult[indexToday].maghrib);
+    $('#4').text(csvResult[indexToday].esha);
+    $('#5').text(csvResult[indexToday].jummah);
 }
 
 function updateDate() {
@@ -110,7 +103,7 @@ function updateDate() {
     if (displayDay.length < 2)
         displayDay = '0' + displayDay;
 
-    return [today.getFullYear(), displayMonth, displayDay].join('-');
+    return [displayDay, displayMonth, today.getFullYear()].join('/');
 }
 
 function updateTime() {
@@ -157,7 +150,7 @@ $(document).ready(function() {
         $('#csv').prop('hidden',true);
         var reader = new FileReader();
         reader.onload = function () {
-            csvResult = $.csv.toArrays(reader.result);
+            csvResult = $.csv.toObjects(reader.result);
             csvDone();
             daily();
         };
