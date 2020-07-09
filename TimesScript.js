@@ -137,6 +137,9 @@ function checkTime() {
         console.log("changing date");
         daily();
     }
+	else {
+		console.log("timecheck - same date");
+	}
 }
 
 $(document).ready(function() {
