@@ -32,46 +32,56 @@ function timeToNext(index) {
 }
 
 function setColour() {
-    if(minutesNow() < timesToday[0]) {
-        $('#col5').removeClass("highlight");
-        $('#remaining').text("There are 5 more prayers remaining today.");
+    if(minutesNow() < timesToday[0] - 10) {
         $('#next').text("The next prayer is in " + timeToNext(0));
     }
-    else if(minutesNow() < timesToday[1]) {
+    
+	if(minutesNow() >= timesToday[0] - 10 && minutesNow() < timesToday[0] + 10) {
         $('#col1').addClass("highlight");
-        $('#remaining').text("There are 4 more prayers remaining today.");
         $('#next').text("The next prayer is in " + timeToNext(1));
     }
-    else if(minutesNow() < timesToday[2]) {
-        $('#sun').addClass("highlight");
+	else {
         $('#col1').removeClass("highlight");
-        $('#remaining').text("There are 4 more prayers remaining today.");
+	}
+	
+	if(minutesNow() >= timesToday[1] - 10 && minutesNow() < timesToday[1] + 10) {
+        $('#sun').addClass("highlight");
         $('#next').text("The next prayer is in " + timeToNext(2));
     }
-    else if(minutesNow() < timesToday[3]) {
-        $('#col2').addClass("highlight");
+	else {
         $('#sun').removeClass("highlight");
-        $('#remaining').text("There are 3 more prayers remaining today.");
+	}
+	
+	if(minutesNow() >= timesToday[2] - 10 && minutesNow() < timesToday[2] + 10) {
+        $('#col2').addClass("highlight");
         $('#next').text("The next prayer is in " + timeToNext(3));
     }
-    else if(minutesNow() < timesToday[4]) {
-        $('#col3').addClass("highlight");
+	else {
         $('#col2').removeClass("highlight");
-        $('#remaining').text("There are 2 more prayers remaining today.");
+	}
+	
+	if(minutesNow() >= timesToday[3] - 10 && minutesNow() < timesToday[3] + 10) {
+        $('#col3').addClass("highlight");
         $('#next').text("The next prayer is in " + timeToNext(4));
     }
-    else if(minutesNow() < timesToday[5]) {
-        $('#col4').addClass("highlight");
+	else {
         $('#col3').removeClass("highlight");
-        $('#remaining').text("There is 1 more prayer remaining today.");
-        $('#next').text("The next prayer is in " + timeToNext(5));
+	}
+	
+	if(minutesNow() >= timesToday[4] - 10 && minutesNow() < timesToday[4] + 10) {
+        $('#col4').addClass("highlight");
+        $('#next').text("There are no more prayers today");
     }
-    else {
-        $('#col5').addClass("highlight");
+	else {
         $('#col4').removeClass("highlight");
-        $('#remaining').text("There are no more prayers remaining today.");
-        $('#next').text("The next prayer is tomorrow.");
+	}
+	
+	if(minutesNow() >= timesToday[5] - 10 && minutesNow() < timesToday[5] + 10) {
+        $('#col5').addClass("highlight");
     }
+	else {
+        $('#col5').removeClass("highlight");
+	}
 }
 
 function csvTimeParser(Time) {
@@ -108,13 +118,10 @@ function updateDate() {
 
 function updateTime() {
     var hours = today.getHours() > 12 ? today.getHours() - 12 : today.getHours();
-    if (hours == 0) hours = 12;
-    else if (hours > 12) hours -= 12;
 
     var minutes = today.getMinutes().toString().length == 1 ? '0'+ today.getMinutes() : today.getMinutes();
-    var ampm = today.getHours() >= 12 ? 'pm' : 'am';
 
-    return hours + ':' + minutes + ' ' + ampm;
+    return hours + ':' + minutes
 }
 
 var date = updateDate();
